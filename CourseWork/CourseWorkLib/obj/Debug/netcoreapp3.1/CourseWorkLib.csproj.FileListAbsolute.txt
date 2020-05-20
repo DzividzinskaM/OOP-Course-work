@@ -1,0 +1,8 @@
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.deps.json
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.dll
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.pdb
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.csprojAssemblyReference.cache
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.AssemblyInfoInputs.cache
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.AssemblyInfo.cs
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.dll
+C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.pdb

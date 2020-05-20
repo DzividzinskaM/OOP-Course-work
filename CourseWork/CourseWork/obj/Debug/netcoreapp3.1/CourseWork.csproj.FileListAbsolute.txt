@@ -1,0 +1,15 @@
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.exe
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.deps.json
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.runtimeconfig.json
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.runtimeconfig.dev.json
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.dll
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.pdb
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.csprojAssemblyReference.cache
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.AssemblyInfoInputs.cache
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.AssemblyInfo.cs
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.dll
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.pdb
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWork.xml
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWorkLib.dll
+C:\Users\Smart\source\repos\CourseWork\CourseWork\bin\Debug\netcoreapp3.1\CourseWorkLib.pdb
+C:\Users\Smart\source\repos\CourseWork\CourseWork\obj\Debug\netcoreapp3.1\CourseWork.csproj.CopyComplete
