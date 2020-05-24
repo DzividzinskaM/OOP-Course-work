@@ -6,3 +6,11 @@ C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\Cou
 C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.AssemblyInfo.cs
 C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.dll
 C:\Users\Smart\source\repos\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.pdb
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.deps.json
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.dll
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\bin\Debug\netcoreapp3.1\CourseWorkLib.pdb
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.csprojAssemblyReference.cache
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.AssemblyInfoInputs.cache
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.AssemblyInfo.cs
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.dll
+D:\Fork\OOP-Course-work\CourseWork\CourseWorkLib\obj\Debug\netcoreapp3.1\CourseWorkLib.pdb

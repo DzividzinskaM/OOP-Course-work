@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWork\\CourseWork.csproj": {}
+    "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWork\\CourseWork.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj": {
+    "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
+        "projectUniqueName": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
         "projectName": "CourseWorkLib",
-        "projectPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
+        "projectPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
         "packagesPath": "C:\\Users\\Smart\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\obj\\",
+        "outputPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Smart\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWork\\CourseWork.csproj": {
+    "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWork\\CourseWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWork\\CourseWork.csproj",
+        "projectUniqueName": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWork\\CourseWork.csproj",
         "projectName": "CourseWork",
-        "projectPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWork\\CourseWork.csproj",
+        "projectPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWork\\CourseWork.csproj",
         "packagesPath": "C:\\Users\\Smart\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWork\\obj\\",
+        "outputPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWork\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Smart\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,8 +79,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj": {
-                "projectPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj"
+              "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj": {
+                "projectPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj"
               }
             }
           }

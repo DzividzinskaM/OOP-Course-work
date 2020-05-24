@@ -9,9 +9,14 @@ namespace CourseWork
         {
             Space space = new Space(20, 20, 20);
             showCurrentSpace(space, 20, 20);
-            Element element = new Element(5, 2);
-            element.addElementToSpace(space, 4, 5);
+            RectangleElement element = new RectangleElement(5, 7);
+            element.addElementToSpace(space, 15, 5);
             Console.WriteLine("after adding");
+            showCurrentSpace(space, 20, 20);
+            Console.WriteLine();
+
+            Console.WriteLine("turn element");
+            element.turnElement(space);
             showCurrentSpace(space, 20, 20);
             Console.WriteLine();
 
@@ -24,7 +29,7 @@ namespace CourseWork
 
             
 
-            Console.WriteLine("after move down");
+           /* Console.WriteLine("after move down");
             element.moveDown(space, 15);
             showCurrentSpace(space, 20, 20);
             Console.WriteLine();
@@ -40,7 +45,7 @@ namespace CourseWork
             element.removeElementFromSpace(space);
             Console.WriteLine("after remove");
             showCurrentSpace(space, 20, 20);
-
+*/
 
         }
 

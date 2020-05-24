@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
+      "projectUniqueName": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
       "projectName": "CourseWorkLib",
-      "projectPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
+      "projectPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\CourseWorkLib.csproj",
       "packagesPath": "C:\\Users\\Smart\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Smart\\source\\repos\\CourseWork\\CourseWorkLib\\obj\\",
+      "outputPath": "D:\\Fork\\OOP-Course-work\\CourseWork\\CourseWorkLib\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Smart\\AppData\\Roaming\\NuGet\\NuGet.Config",

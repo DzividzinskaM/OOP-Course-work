@@ -3,14 +3,14 @@ using CourseWorkLib;
 
 namespace CourseWorkLib
 {
-    public class Element
+    public class RectangleElement : IElement
     {
-        public int length { get; }
-        public int width { get; }
+        public int length { get; private set; }
+        public int width { get; private set; }
         public int x { get; set; }
         public int y { get; set; }
 
-        public Element(int width, int length)
+        public RectangleElement(int width, int length)
         {
             this.length = length;
             this.width = width;
@@ -165,6 +165,33 @@ namespace CourseWorkLib
                 throw new Exception("space for element is not available");
             }
 
+        }
+
+        public void turnElement(Space space)
+        {
+            int tplWidth = width;
+            int tplLength = length;
+
+            removeElementFromSpace(space);
+
+            length = tplWidth;
+            width = tplLength;
+
+            if(checkAvailableSpace(space, x, y))
+            {
+                x++;
+                y++;
+                addElementToSpace(space, x, y);
+            }
+            else
+            {
+                length = tplLength;
+                width = tplWidth;
+
+                addElementToSpace(space, x, y);
+
+                throw new Exception("there aren't enough space for turning element");
+            }
         }
     }
 }
