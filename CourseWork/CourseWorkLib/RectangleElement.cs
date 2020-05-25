@@ -53,7 +53,7 @@ namespace CourseWorkLib
                     tplX = x;
                     while (tplX < (x + width))
                     {
-                        space.matrixSpace[tplX, tplY] = "1";
+                        space.matrixSpace[tplX, tplY] = "r";
                         tplX++;
                     }
                     tplY++;
