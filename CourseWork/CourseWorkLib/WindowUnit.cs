@@ -8,6 +8,7 @@ namespace CourseWorkLib
     {
         public int id { get; }
 
+        public string name { get; }
         public string color { get; }
         public string material { get; }
 
@@ -20,10 +21,11 @@ namespace CourseWorkLib
         public int parts { get; }
 
 
-        public WindowUnit(int id, string color, string material, int width, 
+        public WindowUnit(int id, string name, string color, string material, int width, 
             int length, int height, bool pattern, int parts) : base(width, length, "W")
         {
             this.id = id;
+            this.name = name;
             this.color = color;
             this.material = material;
             this.width = width;
@@ -33,7 +35,7 @@ namespace CourseWorkLib
             this.parts = parts;
         }
 
-        public WindowUnit(string color, string material, int width,
+        public WindowUnit(string name, string color, string material, int width,
            int length, int height, bool pattern, int parts) : base(width, length, "W")
         {
             this.id = id;

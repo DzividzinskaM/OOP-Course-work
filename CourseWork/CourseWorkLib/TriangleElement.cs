@@ -159,39 +159,31 @@ namespace CourseWorkLib
 
         public void turnElement(Space space)
         {
-            Space tplSpace = new Space(space.width, space.length, space.height);
 
-            removeElementFromSpace(tplSpace);
+            removeElementFromSpace(space);
+            addElementToSpace(space, ++y, ++x);
+
+           /* Space tplSpace = space;
+
+            removeElementFromSpace(space);
 
             int tplX = x;
             int tplY = y;
-
-            while (tplX < x + length)
+            while (tplY < y + length)
             {
-                tplY = y;
-                while (tplY - tplX <= y - x)
+                tplX = x;
+                while (tplX - tplY <= x-y)
                 {
-                    if(tplSpace.matrixSpace[tplX, tplY] != space.emptyElemInSpace)
+                    if(space.matrixSpace[tplX, tplY] != space.emptyElemInSpace)
                     {
-
-                        throw new Exception("not enough space for turning element");
-
+                        space = tplSpace;
+                        throw new Exception("element can not to be turn in this space");
                     }
-                    else
-                    {
-                        tplSpace.matrixSpace[tplY, tplX] = "t";
-                    }
-                    tplY++;
+                    space.matrixSpace[tplX, tplY] = "t";
+                    tplX++;
                 }
-                tplX++;
-            }
-
-            space.matrixSpace = tplSpace.matrixSpace;
-            int tpl = x;
-            x = y;
-            y = tpl;
-            Console.WriteLine(x);
-            Console.WriteLine(y);
+                tplY++;
+            }*/
         }
     }
 }

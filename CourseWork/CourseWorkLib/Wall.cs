@@ -23,12 +23,13 @@ namespace CourseWorkLib
 
         public void addNewElemToDB(WallUnit wall)
         {
-            string cmdStr = $"insert into {db.wallsTableName} ({db.materialAttrName}, {db.colorAttrName}, {db.densityAttrName})" +
-                $"values(@{db.materialAttrName}, @{db.colorAttrName}, @{db.densityAttrName})";
+            string cmdStr = $"insert into {db.wallsTableName} ({db.nameAttrName}, {db.materialAttrName}, {db.colorAttrName}, {db.densityAttrName})" +
+                $"values(@{db.nameAttrName}, @{db.materialAttrName}, @{db.colorAttrName}, @{db.densityAttrName})";
             using(SqlConnection cn = new SqlConnection(connectionString))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                cmd.Parameters.AddWithValue($"@{db.nameAttrName}", wall.name);
                 cmd.Parameters.AddWithValue($"@{db.materialAttrName}", wall.material);
                 cmd.Parameters.AddWithValue($"@{db.colorAttrName}", wall.color);
                 cmd.Parameters.AddWithValue($"@{db.densityAttrName}", wall.density);
@@ -51,7 +52,7 @@ namespace CourseWorkLib
                 SqlDataReader rd = cmd.ExecuteReader();
                 while (rd.Read())
                 {
-                    WallUnit wallUnit = new WallUnit((int)rd[db.wallIdAttrName], (string)rd[db.colorAttrName],
+                    WallUnit wallUnit = new WallUnit((int)rd[db.wallIdAttrName], (string)rd[db.nameAttrName], (string)rd[db.colorAttrName],
                                                     (string)rd[db.materialAttrName], (int)rd[db.densityAttrName]);
                     if (!walls.Contains(wallUnit))
                     {

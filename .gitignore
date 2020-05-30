@@ -1,0 +1,11 @@
+﻿CourseWork/CourseWork.sln
+CourseWork/.editorconfig
+*.csproj
+CourseWork/CourseWorkLib/obj
+CourseWork/CourseWork/obj
+CourseWork/.vs
+CourseWork/CourseWork/CourseWork.csproj.vsspell
+CourseWork/CourseWork/bin/Debug
+CourseWork/CourseWorkLib/obj
+CourseWork/CourseWorkLib/CourseWorkLib.csproj
+CourseWork/CourseWorkLib/bin

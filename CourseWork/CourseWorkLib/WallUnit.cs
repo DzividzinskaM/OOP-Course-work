@@ -9,6 +9,8 @@ namespace CourseWorkLib
     {
 
         public int id { get; }
+
+        public string name { get; }
         public string color { get; }
 
         public string material { get; }
@@ -21,9 +23,11 @@ namespace CourseWorkLib
         private string code = "w";
 
 
-        public WallUnit(int id, string color, string material, int density) : base(density, 0)
+        public WallUnit(int id, string name, string color, string material, int density) : base(density, 0)
         {
+         
             this.id = id;
+            this.name = name;
             this.color = color;
             this.material = material;
             this.density = density;
@@ -31,9 +35,9 @@ namespace CourseWorkLib
 
         }
 
-        public WallUnit(string color, string material, int density) : base(density, 0)
+        public WallUnit(string name, string color, string material, int density) : base(density, 0)
         {
-
+            this.name = name;
             this.color = color;
             this.material = material;
             this.density = density;

@@ -1,5 +1,8 @@
 ﻿using System;
 using CourseWorkLib;
+using CourseWorkLib.FurnitureFactory;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace CourseWork
 {
@@ -7,46 +10,43 @@ namespace CourseWork
     {
         static void Main(string[] args)
         {
-            Space space = new Space(20, 20, 20);
-            showCurrentSpace(space, 20, 20);
-            RectangleElement element = new RectangleElement(5, 7);
-            element.addElementToSpace(space, 15, 5);
-            Console.WriteLine("after adding");
-            showCurrentSpace(space, 20, 20);
-            Console.WriteLine();
 
-            Console.WriteLine("turn element");
-            element.turnElement(space);
+            /*Space space = new Space(20, 20, 20);
+
+            WallCreator walls = new WallCreator();
+            walls.getWallLstFromDb();
+
+            Wall wall = walls.getWallById(2);
+            wall.addOutsideWall(space);
+            wall = walls.getWallById(1);
+            wall.addRoom(space, 7, 7, 3, 3);
+
             showCurrentSpace(space, 20, 20);
-            Console.WriteLine();
 
 
-            Console.WriteLine("after move up");
-             element.moveUp(space, 3);
-            //element.moveDown(space, 2);
-            showCurrentSpace(space, 20, 20);
+            WardrobeCreator creator = new WardrobeCreator();
+            creator.getLstFromDB();
+
+            foreach(var value in creator.wardrobes)
+            {
+                Console.WriteLine(value.id);
+                Console.WriteLine(value.name);
+                Console.WriteLine(value.color);
+                Console.WriteLine(value.type);
+                Console.WriteLine(value.shelfNumber);
+                Console.WriteLine();
+            }
+
+            Furniture w1 = creator.getElemByID(1);
+            w1.addElement(space, 5, 11);
+            showCurrentSpace(space, 20, 20);*/
+/*
+            Furniture bed = bedCreator.getElemByID(1);
+            bed.addElement(space, 5,11);
             Console.WriteLine();
+            showCurrentSpace(space, 20, 20);*/
 
             
-
-           /* Console.WriteLine("after move down");
-            element.moveDown(space, 15);
-            showCurrentSpace(space, 20, 20);
-            Console.WriteLine();
-
-            Console.WriteLine("after move right");
-            element.moveRight(space, 14);
-            showCurrentSpace(space, 20, 20);
-
-            Console.WriteLine("after move left");
-            element.moveLeft(space, 18);
-            showCurrentSpace(space, 20, 20);
-
-            element.removeElementFromSpace(space);
-            Console.WriteLine("after remove");
-            showCurrentSpace(space, 20, 20);
-*/
-
         }
 
         static void showCurrentSpace(Space space, int width, int length)

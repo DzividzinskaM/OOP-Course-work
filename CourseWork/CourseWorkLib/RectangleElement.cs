@@ -3,20 +3,24 @@ using CourseWorkLib;
 
 namespace CourseWorkLib
 {
-    public class RectangleElement : IElement
+    public class RectangleElement 
     {
-        public int length { get; private set; }
-        public int width { get; private set; }
+        public int length { get; set; }
+        public int width { get; set; }
+
         public int x { get; set; }
         public int y { get; set; }
 
-        public RectangleElement(int width, int length)
+        protected string codeElement;
+        protected string removingElement = "0";
+
+        protected RectangleElement(int width, int length)
         {
             this.length = length;
             this.width = width;
         }
 
-        public bool checkAvailableSpace(Space space, int x, int y)
+        protected virtual bool checkAvailableSpace(Space space, int x, int y)
         {
             if(x+width>space.width && y+length>space.length)
             {
@@ -38,7 +42,7 @@ namespace CourseWorkLib
             return true;
 
         }
-        public void addElementToSpace(Space space, int xStart, int yStart)
+        protected virtual void addElementToSpace(Space space, int xStart, int yStart)
         {
             --xStart;
             --yStart;
@@ -53,7 +57,7 @@ namespace CourseWorkLib
                     tplX = x;
                     while (tplX < (x + width))
                     {
-                        space.matrixSpace[tplX, tplY] = "r";
+                        space.matrixSpace[tplX, tplY] = codeElement;
                         tplX++;
                     }
                     tplY++;
@@ -67,10 +71,8 @@ namespace CourseWorkLib
         }
 
 
-        public void removeElementFromSpace(Space space)
+        protected void removeElementFromSpace(Space space)
         {
-            if(checkAvailableSpace(space, x, y))
-                throw new Exception("Nothing for delete! Please add element firstly");
             int tplX = x;
             int tplY = y;
             while (tplY < y + length)
@@ -78,14 +80,14 @@ namespace CourseWorkLib
                 tplX = x;
                 while (tplX < (x + width))
                 {
-                    space.matrixSpace[tplX, tplY] = "0";
+                    space.matrixSpace[tplX, tplY] = removingElement;
                     tplX++;
                 }
                 tplY++;
             }
         }
-        
-        public void moveUp(Space space, int position)
+
+        protected void moveUp(Space space, int position)
         {
             if(x-position < 0)
             {
@@ -105,7 +107,7 @@ namespace CourseWorkLib
             }
 
         }
-        public void moveDown(Space space, int position)
+        protected void moveDown(Space space, int position)
         {
             if(x+position > space.width)
                 throw new Exception("You go over space");
@@ -125,7 +127,7 @@ namespace CourseWorkLib
 
         }
 
-        public void moveRight(Space space, int position)
+        protected void moveRight(Space space, int position)
         {
             if (y + position > space.length)
             {
@@ -146,7 +148,7 @@ namespace CourseWorkLib
 
         }
 
-        public void moveLeft(Space space, int position)
+        protected void moveLeft(Space space, int position)
         {
             if (y - position < 0)
             {
@@ -167,7 +169,7 @@ namespace CourseWorkLib
 
         }
 
-        public void turnElement(Space space)
+        protected void turnElement(Space space)
         {
             int tplWidth = width;
             int tplLength = length;

@@ -7,7 +7,6 @@ namespace CourseWorkLib
     interface IElement
     {
         public bool checkAvailableSpace(Space space, int x, int y);
-
         public void addElementToSpace(Space space, int xStart, int yStart);
 
         public void removeElementFromSpace(Space space);
@@ -20,9 +19,7 @@ namespace CourseWorkLib
 
         public void moveLeft(Space space, int position);
 
-
         public void turnElement(Space space);
-
 
     }
 }

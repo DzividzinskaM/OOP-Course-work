@@ -5,8 +5,7 @@ using System.Text;
 namespace CourseWorkLib.FurnitureFactory
 {
     public abstract class FurnitureCreator
-    {
-        //abstract public void create();
+    { 
 
         public DB db;
         public string connectionString;
@@ -20,9 +19,7 @@ namespace CourseWorkLib.FurnitureFactory
         abstract public void getLstFromDB();
 
 
-        abstract public Furniture getElemByID(int id);
-
-        
+        abstract public Furniture getElemByID(int id);   
        
     }
 }

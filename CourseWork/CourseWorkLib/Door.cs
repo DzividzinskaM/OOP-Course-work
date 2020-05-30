@@ -29,7 +29,8 @@ namespace CourseWorkLib
 
                 while (rd.Read())
                 {
-                    DoorUnit door = new DoorUnit((int)rd[db.doorIdAttrName], (string)rd[db.materialAttrName], (int)rd[db.doorWidthAttrName],
+                    DoorUnit door = new DoorUnit((int)rd[db.doorIdAttrName], (string)rd[db.nameAttrName], (string)rd[db.materialAttrName],
+                        (int)rd[db.doorWidthAttrName],
                         (int)rd[db.doorLengthAttrName], (int)rd[db.doorHeightAttrName], (string)rd[db.colorAttrName]);
 
                     if (!doors.Contains(door))
@@ -46,14 +47,14 @@ namespace CourseWorkLib
 
         public void addNewDoorToDB(DoorUnit door)
         {
-            string cmdStr = $"insert into {db.doorsTableName} ({db.materialAttrName}, {db.doorWidthAttrName}," +
-                $"{db.doorLengthAttrName}, {db.doorHeightAttrName}, {db.colorAttrName}) values(@{db.materialAttrName}, " +
+            string cmdStr = $"insert into {db.doorsTableName} ({db.nameAttrName}, {db.materialAttrName}, {db.doorWidthAttrName}," +
+                $"{db.doorLengthAttrName}, {db.doorHeightAttrName}, {db.colorAttrName}) values(@{db.nameAttrName}, @{db.materialAttrName}, " +
                 $"@{db.doorWidthAttrName}, @{db.doorLengthAttrName}, @{db.doorHeightAttrName}, @{db.colorAttrName})";
             using(SqlConnection cn = new SqlConnection(connectionString))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-                
+                cmd.Parameters.AddWithValue($"@{db.nameAttrName}", door.name);
                 cmd.Parameters.AddWithValue($"@{db.materialAttrName}", door.material);
                 cmd.Parameters.AddWithValue($"@{db.doorWidthAttrName}", door.width);
                 cmd.Parameters.AddWithValue($"@{db.doorLengthAttrName}", door.length);

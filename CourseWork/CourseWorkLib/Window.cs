@@ -32,7 +32,8 @@ namespace CourseWorkLib
                     bool pattern = false;
                     if ((bool)rd[db.patternAttrName])
                         pattern = true;
-                    WindowUnit window = new WindowUnit((int)rd[db.windowIdAttrName], (string)rd[db.colorAttrName],
+                    WindowUnit window = new WindowUnit((int)rd[db.windowIdAttrName], (string)rd[db.nameAttrName], 
+                        (string)rd[db.colorAttrName],
                         (string)rd[db.materialAttrName], (int)rd[db.windowWidthAttrName], (int)rd[db.windowLengthAttrName],
                         (int)rd[db.windowHeightAttrName], pattern, (int)rd[db.partsAttrName]);
 
@@ -49,15 +50,16 @@ namespace CourseWorkLib
 
         public void addNewWindowToDB(WindowUnit window)
         {
-            string cmdStr = $"insert into {db.windowsTableName} ({db.materialAttrName}, {db.colorAttrName}," +
+            string cmdStr = $"insert into {db.windowsTableName} ({db.nameAttrName}, {db.materialAttrName}, {db.colorAttrName}," +
                 $"{db.windowWidthAttrName}, {db.windowLengthAttrName}, {db.windowHeightAttrName}, {db.patternAttrName}," +
-                $"{db.partsAttrName}) values( @{db.materialAttrName}, @{db.colorAttrName}," +
+                $"{db.partsAttrName}) values(@{db.nameAttrName}, @{db.materialAttrName}, @{db.colorAttrName}," +
                 $"@{db.windowWidthAttrName}, @{db.windowLengthAttrName}, @{db.windowHeightAttrName}, @{db.patternAttrName}," +
                 $"@{db.partsAttrName})";
             using(SqlConnection cn = new SqlConnection(connectionString))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                cmd.Parameters.AddWithValue($"@{db.nameAttrName}", window.name);
                 cmd.Parameters.AddWithValue($"@{db.materialAttrName}", window.material);
                 cmd.Parameters.AddWithValue($"@{db.colorAttrName}", window.color);
                 cmd.Parameters.AddWithValue($"@{db.windowWidthAttrName}", window.width);

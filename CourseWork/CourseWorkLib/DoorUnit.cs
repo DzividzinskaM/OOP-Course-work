@@ -9,15 +9,18 @@ namespace CourseWorkLib
         public int id { get; }
 
         public string material { get;  }
+
+        public string name { get; }
         public int width { get; }
         public int length { get; }
         public int height { get; }
         
         public string color { get; }
 
-        public DoorUnit(int id, string material, int width, int length, int height, string color) : base(width, length, "D")
+        public DoorUnit(int id, string name, string material, int width, int length, int height, string color) : base(width, length, "D")
         {
             this.id = id;
+            this.name = name;
             this.material = material;
             this.width = width;
             this.length = length;
@@ -25,9 +28,9 @@ namespace CourseWorkLib
             this.color = color;
         }
 
-        public DoorUnit(string material, int width, int length, int height, string color) : base(width, length, "D")
+        public DoorUnit(string name, string material, int width, int length, int height, string color) : base(width, length, "D")
         {
-
+            this.name = name;
             this.material = material;
             this.width = width;
             this.length = length;
