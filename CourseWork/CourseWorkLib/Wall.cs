@@ -1,56 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 
 namespace CourseWorkLib
 {
-    public class Wall {
+    public class Wall 
+    {
 
-        private bool outsideStandardWall = false;
+        public readonly List<WallUnit> walls = new List<WallUnit>();
 
-        private int wallOtsideWidth = 2;
+        public DB db;
+        public string connectionString;
 
-        private int wallInsideWidth = 1;
-
-        private int xStart = 1;
-        private int yStart = 1;
-        public void addOutsideWall(Space space)
+        public Wall()
         {
-            UnitWall sideUnit = new UnitWall(space.length, space.height, wallOtsideWidth);
-            sideUnit.turnWall(space);
-            sideUnit.addWall(space, xStart, space.length - yStart);
-
-
-            int lengthMainWall = space.length - (2 * wallOtsideWidth);
-            int yForMainWall = sideUnit.width + 1;
-            int xForMainWall = space.width - wallOtsideWidth;
-            UnitWall mainUnit = new UnitWall(lengthMainWall , space.height, wallOtsideWidth);
-            mainUnit.addWall(space, xStart, yForMainWall);
-            mainUnit.moveWallToDown(space, xForMainWall);
-            mainUnit.addWall(space, xStart, yForMainWall);
-
-            outsideStandardWall = true;
-
+            db = DB.GetDBInstance();
+            connectionString = DB.GetConnectionString();
         }
 
-        public void addRoom(Space space, int width, int length, int x, int y)
+
+        public void addNewElemToDB(WallUnit wall)
         {
-            if (Math.Abs(x - wallInsideWidth) <= wallInsideWidth)
+            string cmdStr = $"insert into {db.wallsTableName} ({db.materialAttrName}, {db.colorAttrName}, {db.densityAttrName})" +
+                $"values(@{db.materialAttrName}, @{db.colorAttrName}, @{db.densityAttrName})";
+            using(SqlConnection cn = new SqlConnection(connectionString))
             {
-                throw new Exception("too small size of room");
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                cmd.Parameters.AddWithValue($"@{db.materialAttrName}", wall.material);
+                cmd.Parameters.AddWithValue($"@{db.colorAttrName}", wall.color);
+                cmd.Parameters.AddWithValue($"@{db.densityAttrName}", wall.density);
+
+                int result = cmd.ExecuteNonQuery();
+                if(result != 1)
+                {
+                    throw new Exception("there are some problems with adding wall to database");
+                }
             }
-
-            UnitWall mainUnits = new UnitWall(length, space.height, wallInsideWidth);
-            mainUnits.addWall(space, x, y);
-            mainUnits.addWall(space, x + length-wallInsideWidth, y);
-
-            int newLength = length - (2 * wallInsideWidth);
-            UnitWall sideUnits = new UnitWall(newLength, space.height, wallInsideWidth);
-            sideUnits.addWall(space, x+wallInsideWidth, y);
-            sideUnits.turnWall(space);
-            sideUnits.addWall(space, x + wallInsideWidth, y + length-wallInsideWidth);
-
         }
 
+        public void getLstFromDB()
+        {
+            string cmdStr = $"select * from {db.wallsTableName}";
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                SqlDataReader rd = cmd.ExecuteReader();
+                while (rd.Read())
+                {
+                    WallUnit wallUnit = new WallUnit((int)rd[db.wallIdAttrName], (string)rd[db.colorAttrName],
+                                                    (string)rd[db.materialAttrName], (int)rd[db.densityAttrName]);
+                    if (!walls.Contains(wallUnit))
+                    {
+                        walls.Add(wallUnit);
+                    }
+                }
+
+            }
+        }
+
+        public WallUnit getElemByID(int id)
+        {
+            return walls.Where(wall => wall.id == id).First();
+        }
     }
 }

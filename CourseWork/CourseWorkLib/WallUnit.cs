@@ -49,7 +49,7 @@ namespace CourseWorkLib
             turnWall(space);
             moveRight(space, space.length - density);
 
-            base.length =space.length - density;
+            base.length = space.length - density;
             base.width = density;
             addWall(space, xStartOut, yStartOut);
             turnWall(space);
@@ -66,17 +66,17 @@ namespace CourseWorkLib
         {
             base.length = length;
             addWall(space, x, y);
-            addWall(space, x + length-density, y);
+            addWall(space, x + length - density, y);
 
             int newLength = length - (2 * density);
 
             base.width = density;
             base.length = newLength;
-            addWall(space, x+density, y);
+            addWall(space, x + density, y);
             turnWall(space);
             base.width = density;
             base.length = newLength;
-            addWall(space, x + density, y + length-density);
+            addWall(space, x + density, y + length - density);
             turnWall(space);
 
         }
@@ -117,7 +117,7 @@ namespace CourseWorkLib
             base.turnElement(space);
         }
 
-       
+
     }
 
 }
