@@ -12,8 +12,8 @@ namespace CourseWorkLib
         public string color { get; }
         public string material { get; }
 
-        public int width { get; }
-        public int length { get; }
+    //    public int width { get; }
+     //   public int length { get; }
 
         public int height { get;  }
         public bool pattern { get; }
@@ -54,6 +54,13 @@ namespace CourseWorkLib
             if (installationHeight + height > space.height)
                 throw new Exception("Yon can not put this element on this height");
             base.addElementToSpace(space, x, y);
+            space.windows.Add(this);
+        }
+
+        public void removeElement(Space space)
+        {
+            base.removeElement(space);
+            space.windows.Remove(this);
         }
     }
 }

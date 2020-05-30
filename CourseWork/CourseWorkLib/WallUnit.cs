@@ -48,79 +48,59 @@ namespace CourseWorkLib
 
         public void addOutsideWall(Space space)
         {
-            base.length = space.length;
-            addWall(space, xStartOut, yStartOut);
-            turnWall(space);
-            moveRight(space, space.length - density);
+            WallUnit rigthWall = this;
+            rigthWall.addElement(space, xStartOut, yStartOut, space.length);
+            rigthWall.turnElement(space);
+            rigthWall.moveRight(space, space.length - density);
 
-            base.length = space.length - density;
+           
             base.width = density;
-            addWall(space, xStartOut, yStartOut);
-            turnWall(space);
+            WallUnit leftWall = this;
+            leftWall.length = space.length - density;
+            leftWall.addElement(space, xStartOut, yStartOut, length);
+            leftWall.turnElement(space);
 
-            base.length = space.length - (2 * density);
+
+            int NewLength = space.length - (2 * density);
             base.width = density;
-            addWall(space, xStartOut, yStartOut + density);
-            base.length = space.length - density;
-            addWall(space, space.length - density + xStartOut, yStartOut);
+            WallUnit wallTop = this;
+            wallTop.addElement(space, xStartOut, yStartOut + density, NewLength);
+            WallUnit wallBottom= this;
+            wallBottom.addElement(space, space.length - density + xStartOut, yStartOut, space.length - density);
 
         }
 
         public void addRoom(Space space, int width, int length, int x, int y)
         {
-            base.length = length;
-            addWall(space, x, y);
-            addWall(space, x + length - density, y);
+
+            addElement(space, x, y, length);
+            addElement(space, x + length - density, y, length);
 
             int newLength = length - (2 * density);
 
-            base.width = density;
-            base.length = newLength;
-            addWall(space, x + density, y);
-            turnWall(space);
-            base.width = density;
-            base.length = newLength;
-            addWall(space, x + density, y + length - density);
-            turnWall(space);
+          //  base.width = density;
+            
+            addElement(space, x + density, y, newLength);
+            turnElement(space);
+            //base.width = density;
+            
+            addElement(space, x + density, y + length - density, newLength);
+            turnElement(space);
 
         }
 
-        public void addWall(Space space, int xStart, int yStart)
+        public void addElement(Space space, int xStart, int yStart, int length)
         {
-            Console.WriteLine(length);
+            base.length = length;
             base.addElementToSpace(space, xStart, yStart);
+            space.walls.Add(this);
         }
 
-        public void removeWall(Space space)
+        public void removeElement(Space space)
         {
             base.removeElementFromSpace(space);
+            space.walls.Remove(this);
         }
-
-        public void moveWallRigth(Space space, int position)
-        {
-            base.moveRight(space, position);
-        }
-
-        public void moveWallLeft(Space space, int position)
-        {
-            base.moveLeft(space, position);
-        }
-
-        public void moveWallToUp(Space space, int position)
-        {
-            base.moveUp(space, position);
-        }
-
-        public void moveWallToDown(Space space, int position)
-        {
-            base.moveDown(space, position);
-        }
-
-        public void turnWall(Space space)
-        {
-            base.turnElement(space);
-        }
-
 
     }
 

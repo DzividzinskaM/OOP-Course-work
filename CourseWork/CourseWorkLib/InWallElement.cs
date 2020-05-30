@@ -6,10 +6,10 @@ namespace CourseWorkLib
 {
     public class InWallElement : RectangleElement
     {
-        private string codeElement;
+//        private string codeElement;
 
-        private int width;
-        private int length;
+       // private int width;
+      //  private int length;
 
         public InWallElement(int width, int length, string code) : base(width, length)
         {
@@ -20,7 +20,7 @@ namespace CourseWorkLib
             base.codeElement = codeElement;
         }
 
-        protected void addElementToSpace(Space space, int x, int y) 
+        protected override void addElementToSpace(Space space, int x, int y) 
         {
             --x;
             --y;

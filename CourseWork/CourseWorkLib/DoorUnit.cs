@@ -11,8 +11,8 @@ namespace CourseWorkLib
         public string material { get;  }
 
         public string name { get; }
-        public int width { get; }
-        public int length { get; }
+       // public int width { get; }
+       // public int length { get; }
         public int height { get; }
         
         public string color { get; }
@@ -45,6 +45,13 @@ namespace CourseWorkLib
                 throw new Exception("this door is higher then space");
             }
             base.addElementToSpace(space, x, y);
+            space.doors.Add(this);
+        }
+
+        public void removeElement(Space space)
+        {
+            base.removeElement(space);
+            space.doors.Remove(this);
         }
        
     }

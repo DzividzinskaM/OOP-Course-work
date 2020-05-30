@@ -10,9 +10,9 @@ namespace CourseWorkLib.FurnitureFactory
 
         public string name { get; }
 
-        public int width { get; }
+       // public int width { get; }
 
-        public int length { get; }
+      //  public int length { get; }
 
         public int height { get; }
 
@@ -33,15 +33,10 @@ namespace CourseWorkLib.FurnitureFactory
             this.material = material;
         }
 
-        public void addElement(Space space, int x, int y)
-        {
-            base.addElementToSpace(space, x, y);
-        }
+        public abstract void addElement(Space space, int x, int y);
 
-        public void moveRight(Space space, int position)
-        {
-            base.moveRight(space, position);
-        }
+        public abstract void removeElement(Space space);
+
 
     }
 }
