@@ -11,8 +11,9 @@ namespace CourseWorkLib
         public int x { get; set; }
         public int y { get; set; }
 
+
         protected string codeElement;
-        protected string removingElement = "0";
+        protected string removingElement = CodeElementHelper.emptyElement;
 
         protected RectangleElement(int width, int length)
         {
@@ -33,7 +34,8 @@ namespace CourseWorkLib
                 tplX = x;
                 while (tplX < (x + width))
                 {
-                    if (space.matrixSpace[tplX, tplY] != space.emptyElemInSpace)
+                    Console.WriteLine(space.matrixSpace[tplX, tplY]);
+                    if (space.matrixSpace[tplX, tplY] != CodeElementHelper.emptyElement)
                         return false;
                     tplX++;
                 }
@@ -158,7 +160,7 @@ namespace CourseWorkLib
             if (checkAvailableSpace(space, x, y - position))
             {
                 ++x;
-                ++y;
+               ++y;
                 addElementToSpace(space, x, y - position);
             }
             else

@@ -16,8 +16,6 @@ namespace CourseWorkLib
 
         public string[,] matrixSpace;
 
-        internal string emptyElemInSpace = "0";
-
         public List<WallUnit> walls { get; internal set; }
         public List<DoorUnit> doors;
         public List<WindowUnit> windows;
@@ -48,7 +46,7 @@ namespace CourseWorkLib
             {
                 for(int j=0; j<length; j++)
                 {
-                    matrixSpace[i, j] = emptyElemInSpace;
+                    matrixSpace[i, j] = CodeElementHelper.emptyElement;
                 }
             }
 

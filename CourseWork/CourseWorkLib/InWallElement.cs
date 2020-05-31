@@ -6,18 +6,16 @@ namespace CourseWorkLib
 {
     public class InWallElement : RectangleElement
     {
-//        private string codeElement;
 
-       // private int width;
-      //  private int length;
 
         public int x { get; private set; }
         
         public int y { get; private set; }
 
+
         public InWallElement(int width, int length, string code) : base(width, length)
         {
-            base.removingElement = "w";
+            base.removingElement = CodeElementHelper.wallElement;
             this.width = width;
             this.length = length;
             codeElement = code;
@@ -41,7 +39,7 @@ namespace CourseWorkLib
                 tplX = x;
                 while (tplX < (x + width))
                 {
-                    space.matrixSpace[tplX, tplY] = "D";
+                    space.matrixSpace[tplX, tplY] = codeElement;
                     tplX++;
 
                 }
@@ -59,7 +57,7 @@ namespace CourseWorkLib
                 tplX = x;
                 while (tplX < (x + width))
                 {
-                    if (space.matrixSpace[tplX, tplY] != "w")
+                    if (space.matrixSpace[tplX, tplY] != CodeElementHelper.wallElement)
                         return false;
                     tplX++;
 

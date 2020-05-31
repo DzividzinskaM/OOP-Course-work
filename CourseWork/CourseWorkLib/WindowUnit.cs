@@ -24,7 +24,7 @@ namespace CourseWorkLib
 
 
         public WindowUnit(int id, string name, string color, string material, int width, 
-            int length, int height, bool pattern, int parts) : base(width, length, "W")
+            int length, int height, bool pattern, int parts) : base(width, length, CodeElementHelper.windowElement)
         {
             this.id = id;
             this.name = name;
@@ -38,7 +38,7 @@ namespace CourseWorkLib
         }
 
         public WindowUnit(string name, string color, string material, int width,
-           int length, int height, bool pattern, int parts) : base(width, length, "W")
+           int length, int height, bool pattern, int parts) : base(width, length, CodeElementHelper.windowElement)
         {
             this.id = id;
             this.color = color;

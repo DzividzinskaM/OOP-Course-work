@@ -26,11 +26,11 @@ namespace CourseWorkLib
                 tplY = y;
                 while (tplY - tplX <= y - x)
                 {
-                    if (space.matrixSpace[tplX, tplY] != space.emptyElemInSpace)
+                   /* if (space.matrixSpace[tplX, tplY] != space.emptyElemInSpace)
                     {
                         return false;
                     }
-                    tplY++;
+                    tplY++;*/
                 }
                 tplX++;
             }
@@ -69,7 +69,7 @@ namespace CourseWorkLib
                 tplY = y;
                 while (tplY - tplX <= y - x)
                 {
-                    space.matrixSpace[tplX, tplY] = space.emptyElemInSpace;
+                    //space.matrixSpace[tplX, tplY] = space.emptyElemInSpace;
                     tplY++;
                 }
                 tplX++;

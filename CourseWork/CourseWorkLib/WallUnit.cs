@@ -20,7 +20,7 @@ namespace CourseWorkLib
         private int xStartOut = 1;
         private int yStartOut = 1;
 
-        private string code = "w";
+        private string code = CodeElementHelper.wallElement;
 
 
         public WallUnit(int id, string name, string color, string material, int density) : base(density, 0)
@@ -53,7 +53,7 @@ namespace CourseWorkLib
             rigthWall.turnElement(space);
             rigthWall.moveRight(space, space.length - density);
 
-           
+
             base.width = density;
             WallUnit leftWall = this;
             leftWall.length = space.length - density;
@@ -65,7 +65,7 @@ namespace CourseWorkLib
             base.width = density;
             WallUnit wallTop = this;
             wallTop.addElement(space, xStartOut, yStartOut + density, NewLength);
-            WallUnit wallBottom= this;
+            WallUnit wallBottom = this;
             wallBottom.addElement(space, space.length - density + xStartOut, yStartOut, space.length - density);
 
         }
@@ -73,17 +73,18 @@ namespace CourseWorkLib
         public void addRoom(Space space, int width, int length, int x, int y)
         {
 
+
             addElement(space, x, y, length);
             addElement(space, x + length - density, y, length);
 
             int newLength = length - (2 * density);
 
-          //  base.width = density;
-            
+            //  base.width = density;
+
             addElement(space, x + density, y, newLength);
             turnElement(space);
             //base.width = density;
-            
+
             addElement(space, x + density, y + length - density, newLength);
             turnElement(space);
 
@@ -93,7 +94,7 @@ namespace CourseWorkLib
         {
             base.length = length;
             base.addElementToSpace(space, xStart, yStart);
-            space.walls.Add(this);
+           // space.walls.Add(this);
         }
 
         public void removeElement(Space space)
