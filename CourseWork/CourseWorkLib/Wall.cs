@@ -11,8 +11,8 @@ namespace CourseWorkLib
 
         public readonly List<WallUnit> walls = new List<WallUnit>();
 
-        public DB db;
-        public string connectionString;
+        private DB db;
+        private string connectionString;
 
         public Wall()
         {

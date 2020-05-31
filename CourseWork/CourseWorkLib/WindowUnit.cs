@@ -20,6 +20,8 @@ namespace CourseWorkLib
 
         public int parts { get; }
 
+        public int installationHeight { get; private set; }
+
 
         public WindowUnit(int id, string name, string color, string material, int width, 
             int length, int height, bool pattern, int parts) : base(width, length, "W")
@@ -51,8 +53,10 @@ namespace CourseWorkLib
 
         public void addElement(Space space, int x, int y, int installationHeight) 
         {
+            
             if (installationHeight + height > space.height)
                 throw new Exception("Yon can not put this element on this height");
+            this.installationHeight = installationHeight;
             base.addElementToSpace(space, x, y);
             space.windows.Add(this);
         }

@@ -17,6 +17,13 @@ namespace CourseWorkLib
         public readonly string chairTableName = "Chairs";
         public readonly string bedsTableName = "Beds";
         public readonly string WardrobesTableName = "Wardrobes";
+        public readonly string spacesTableName = "Spaces";
+        public readonly string SpaceWallsTableName = "SpaceWalls";
+        public readonly string SpaceDoorTableName = "SpaceDoor";
+        public readonly string SpaceWindowsTableName = "SpaceWindows";
+        public readonly string SpaceChairsTableName = "SpaceChairs";
+        public readonly string SpaceBedsTableName = "SpaceBeds";
+        public readonly string SpaceWardrobesTableName = "SpaceWardrobes";
 
         public readonly string wallIdAttrName = "WallID";
         public readonly string materialAttrName = "material";
@@ -48,6 +55,15 @@ namespace CourseWorkLib
         public readonly string WardrobeHeightAttrName = "WardrobeHeight";
         public readonly string WardrobeTypeAttrName = "WardrobeType";
         public readonly string shelfNumberAttrName = "shelfNumber";
+        public readonly string spaceIDAttrName = "SpaceID";
+        public readonly string spaceLengthAttrName = "spaceLength";
+        public readonly string spaceWidthAttrName = "spaceWidth";
+        public readonly string spaceHeightAttrName = "spaceHeight";
+        public readonly string spaceNameAttrName = "spaceName";
+        public readonly string xAttrName = "x";
+        public readonly string yAttrName = "y";
+        public readonly string wallLengthAttrName = "wallLength";
+        public readonly string installationHeightAttrName = "installationHeight";
 
 
         private DB() { }

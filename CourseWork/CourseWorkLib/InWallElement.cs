@@ -11,6 +11,10 @@ namespace CourseWorkLib
        // private int width;
       //  private int length;
 
+        public int x { get; private set; }
+        
+        public int y { get; private set; }
+
         public InWallElement(int width, int length, string code) : base(width, length)
         {
             base.removingElement = "w";
@@ -26,6 +30,10 @@ namespace CourseWorkLib
             --y;
             if (!checkAvailableSpace(space, x, y))
                 throw new Exception("You can add this element only instead of wall");
+            this.x = x;
+            this.y = y;
+            base.x = x;
+            base.y = y;
             int tplX = x;
             int tplY = y;
             while (tplY < y + length)
