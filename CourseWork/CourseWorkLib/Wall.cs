@@ -121,7 +121,7 @@ namespace CourseWorkLib
 
             WallUnit bottom = getElemByID(id);
             bottom.length = space.length - bottom.density;
-            bottom.addElement(space, space.length - top.density + xStartOut, yStartOut, top.length);
+            bottom.addElement(space, space.length - top.density + xStartOut, yStartOut, bottom.length);
 
            
 
