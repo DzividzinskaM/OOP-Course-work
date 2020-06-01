@@ -45,7 +45,32 @@ namespace CourseWorkLib
 
         public WindowUnit getWindowById(int id)
         {
-            return windows.Where(window => window.id == id).First();
+            string cmdStr = $"select * from {db.windowsTableName} where {db.windowIdAttrName} = {id}";
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                SqlDataReader rd = cmd.ExecuteReader();
+                WindowUnit window = null;
+                while (rd.Read())
+                {
+                    bool pattern = false;
+                    if ((bool)rd[db.patternAttrName])
+                        pattern = true;
+                    window = new WindowUnit((int)rd[db.windowIdAttrName], (string)rd[db.nameAttrName],
+                        (string)rd[db.colorAttrName],
+                        (string)rd[db.materialAttrName], (int)rd[db.windowWidthAttrName], (int)rd[db.windowLengthAttrName],
+                        (int)rd[db.windowHeightAttrName], pattern, (int)rd[db.partsAttrName]);
+
+                }
+
+                if (window == null)
+                {
+                    throw new Exception("Element with this id isn't find in database");
+                }
+                return window;
+            }
+
         }
 
         public void addNewWindowToDB(WindowUnit window)

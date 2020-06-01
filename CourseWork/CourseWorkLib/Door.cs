@@ -42,7 +42,27 @@ namespace CourseWorkLib
 
         public DoorUnit getDoorById(int id)
         {
-            return doors.Where(door => door.id == id).First();
+
+            string cmdStr = $"select * from {db.doorsTableName} where {db.doorIdAttrName} = {id}";
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                SqlDataReader rd = cmd.ExecuteReader();
+                DoorUnit door = null;
+                while (rd.Read())
+                {
+                    door = new DoorUnit((int)rd[db.doorIdAttrName], (string)rd[db.nameAttrName], (string)rd[db.materialAttrName],
+                        (int)rd[db.doorWidthAttrName],
+                        (int)rd[db.doorLengthAttrName], (int)rd[db.doorHeightAttrName], (string)rd[db.colorAttrName]);
+
+                }
+                if (door == null)
+                {
+                    throw new Exception("Element with this id isn't find in database");
+                }
+                return door;
+            }
         }
 
         public void addNewDoorToDB(DoorUnit door)

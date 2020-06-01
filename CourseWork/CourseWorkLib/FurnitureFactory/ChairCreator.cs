@@ -35,7 +35,26 @@ namespace CourseWorkLib.FurnitureFactory
 
         public override Furniture getElemByID(int id)
         {
-            return chairs.Where(chair => chair.id == id).First();
+            string cmdStr = $"select * from {db.chairTableName} where {db.chairIdAttrName} = {id}";
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                SqlDataReader rd = cmd.ExecuteReader();
+
+                Chair chair = null;
+                while (rd.Read())
+                {
+                    chair = new Chair((int)rd[db.chairIdAttrName], (string)rd[db.nameAttrName], (string)rd[db.colorAttrName],
+                        (string)rd[db.materialAttrName], (int)rd[db.chairWidthAttrName], (int)rd[db.chairLengthAttrName], (int)rd[db.chairHeightAttrName]);
+                    
+                }
+                if (chair == null)
+                {
+                    throw new Exception("Element with this id isn't find in database");
+                }
+                return chair;
+            }
         }
 
 
@@ -62,6 +81,8 @@ namespace CourseWorkLib.FurnitureFactory
                     throw new Exception("there are some problems with adding wall to database");
                 }
             }
+
+            getLstFromDB();
         }
 
 

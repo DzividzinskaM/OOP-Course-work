@@ -33,7 +33,28 @@ namespace CourseWorkLib.FurnitureFactory
         }
         public override Furniture getElemByID(int id)
         {
-            return wardrobes.Where(wardrobe => wardrobe.id == id).First();
+            string cmdStr = $"select * from {db.WardrobesTableName} where {db.WardrobeIDAttrName} = {id}";
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);
+                SqlDataReader rd = cmd.ExecuteReader();
+                Wardrobe wardrobe = null;
+                while (rd.Read())
+                {
+
+                    wardrobe = new Wardrobe((int)rd[db.WardrobeIDAttrName], (string)rd[db.nameAttrName], (string)rd[db.materialAttrName],
+                        (string)rd[db.colorAttrName], (int)rd[db.WardrobeWidthAttrName], (int)rd[db.WardrobeLengthAttrName],
+                        (int)rd[db.WardrobeHeightAttrName], (string)rd[db.WardrobeTypeAttrName], (int)rd[db.shelfNumberAttrName]);
+
+                }
+
+                if (wardrobe == null)
+                {
+                    throw new Exception("Element with this id isn't find in database");
+                }
+                return wardrobe;
+            }
         }
 
         public void addNewElemToDB(Wardrobe wardrobe)
