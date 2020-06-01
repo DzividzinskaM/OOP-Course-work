@@ -123,12 +123,29 @@ namespace CourseWorkLib
             bottom.length = space.length - bottom.density;
             bottom.addElement(space, space.length - top.density + xStartOut, yStartOut, bottom.length);
 
-           
-
 
         }
 
 
-       
+        public void addRoom(Space space, int width, int length, int x, int y, int id)
+        {
+            WallUnit top = getElemByID(id);
+            top.addElement(space, x, y, length);
+            WallUnit bottom = getElemByID(id);
+            bottom.addElement(space, x + length - bottom.density, y, length);
+
+            WallUnit left = getElemByID(id);
+            int newLength = length - (2 * bottom.density);
+
+            left.addElement(space, x + left.density, y, newLength);
+            left.turnElement(space);
+
+            WallUnit right = getElemByID(id);
+            right.addElement(space, x + right.density, y + length - right.density, newLength);
+            right.turnElement(space);
+
+        }
+
+
     }
 }

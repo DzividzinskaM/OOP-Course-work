@@ -17,11 +17,7 @@ namespace CourseWorkLib
 
         public int density { get; }
 
-        private int xStartOut = 1;
-        private int yStartOut = 1;
-
         private string code = CodeElementHelper.wallElement;
-
 
         public WallUnit(int id, string name, string color, string material, int density) : base(density, 0)
         {
@@ -45,56 +41,14 @@ namespace CourseWorkLib
 
         }
 
-
-        public void addOutsideWall(Space space)
-        {
-            WallUnit rigthWall = this;
-            rigthWall.addElement(space, xStartOut, yStartOut, space.length);
-            rigthWall.turnElement(space);
-            rigthWall.moveRight(space, space.length - density);
-
-
-            base.width = density;
-            WallUnit leftWall = this;
-            leftWall.length = space.length - density;
-            leftWall.addElement(space, xStartOut, yStartOut, length);
-            leftWall.turnElement(space);
-
-
-            int NewLength = space.length - (2 * density);
-            base.width = density;
-            WallUnit wallTop = this;
-            wallTop.addElement(space, xStartOut, yStartOut + density, NewLength);
-            WallUnit wallBottom = this;
-            wallBottom.addElement(space, space.length - density + xStartOut, yStartOut, space.length - density);
-
-        }
-
-        public void addRoom(Space space, int width, int length, int x, int y)
-        {
-
-
-            addElement(space, x, y, length);
-            addElement(space, x + length - density, y, length);
-
-            int newLength = length - (2 * density);
-
-            //  base.width = density;
-
-            addElement(space, x + density, y, newLength);
-            turnElement(space);
-            //base.width = density;
-
-            addElement(space, x + density, y + length - density, newLength);
-            turnElement(space);
-
-        }
+     
 
         public void addElement(Space space, int xStart, int yStart, int length)
         {
             base.length = length;
             base.addElementToSpace(space, xStart, yStart);
-           // space.walls.Add(this);
+            space.walls.Add(this);
+
         }
 
         public void removeElement(Space space)
