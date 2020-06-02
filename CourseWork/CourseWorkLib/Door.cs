@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -16,9 +17,10 @@ namespace CourseWorkLib
         {
             db = DB.GetDBInstance();
             connectionString = DB.GetConnectionString();
+            getLstFromDB();
         }
 
-        public void getDoorLstFromDB()
+        public void getLstFromDB()
         {
             string cmdStr = $"select * from {db.doorsTableName}";
             using (SqlConnection cn = new SqlConnection(connectionString))
@@ -59,7 +61,7 @@ namespace CourseWorkLib
                 }
                 if (door == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return door;
             }
@@ -84,10 +86,11 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("There are some problems with adding wall to database");
                 }
 
             }
+            getLstFromDB();
         }
     }
 }

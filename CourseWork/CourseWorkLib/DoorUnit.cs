@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -11,13 +12,13 @@ namespace CourseWorkLib
         public string material { get;  }
 
         public string name { get; }
-       // public int width { get; }
-       // public int length { get; }
+
         public int height { get; }
         
         public string color { get; }
 
-        public DoorUnit(int id, string name, string material, int width, int length, int height, string color) : base(width, length, "D")
+        public DoorUnit(int id, string name, string material, int width, int length,
+            int height, string color) : base(width, length, CodeElementHelper.doorEelement)
         {
             this.id = id;
             this.name = name;
@@ -28,7 +29,8 @@ namespace CourseWorkLib
             this.color = color;
         }
 
-        public DoorUnit(string name, string material, int width, int length, int height, string color) : base(width, length, "D")
+        public DoorUnit(string name, string material, int width, int length, 
+            int height, string color) : base(width, length, CodeElementHelper.doorEelement)
         {
             this.name = name;
             this.material = material;
@@ -42,7 +44,7 @@ namespace CourseWorkLib
         {
             if(space.height < height)
             {
-                throw new Exception("this door is higher then space");
+                throw new DesignSpaceException("this door is higher then space");
             }
             base.addElementToSpace(space, x, y);
             space.doors.Add(this);

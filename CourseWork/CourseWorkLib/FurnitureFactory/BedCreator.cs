@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib.FurnitureFactory
 {
     public class BedCreator : FurnitureCreator
     {
         public readonly List<Bed> beds = new List<Bed>();
+
+        public BedCreator()
+        {
+            getLstFromDB();
+        }
 
         public override void getLstFromDB()
         {
@@ -18,17 +24,14 @@ namespace CourseWorkLib.FurnitureFactory
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
                 SqlDataReader rd = cmd.ExecuteReader();
-
                 while (rd.Read())
-                {
-                   
+                {                 
                     Bed bed = new Bed((int)rd[db.bedIdAttrName], (string)rd[db.nameAttrName], (string)rd[db.materialAttrName],
                         (string)rd[db.colorAttrName], (int)rd[db.bedWidthAttrName], (int)rd[db.bedLengthAttrName],
                         (int)rd[db.bedHeightAttrName], (string)rd[db.bedTypeAttrName]);
                 
                     if (!beds.Contains(bed))
                         beds.Add(bed);
-
                 }
             }
         }
@@ -50,7 +53,7 @@ namespace CourseWorkLib.FurnitureFactory
                 }
                 if (bed == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return bed;
             }
@@ -66,7 +69,6 @@ namespace CourseWorkLib.FurnitureFactory
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
                 cmd.Parameters.AddWithValue($"@{db.nameAttrName}", bed.name);
                 cmd.Parameters.AddWithValue($"@{db.colorAttrName}", bed.color);
                 cmd.Parameters.AddWithValue($"@{db.materialAttrName}", bed.material);
@@ -78,9 +80,11 @@ namespace CourseWorkLib.FurnitureFactory
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
             }
+
+            getLstFromDB();
         }
 
 

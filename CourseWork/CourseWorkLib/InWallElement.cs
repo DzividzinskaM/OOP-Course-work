@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
     public class InWallElement : RectangleElement
     {
 
-
-        public int x { get; private set; }
+        public  int x { get; private set; }
         
-        public int y { get; private set; }
+        public  int y { get; private set; }
 
 
         public InWallElement(int width, int length, string code) : base(width, length)
@@ -27,7 +27,7 @@ namespace CourseWorkLib
             --x;
             --y;
             if (!checkAvailableSpace(space, x, y))
-                throw new Exception("You can add this element only instead of wall");
+                throw new DesignSpaceException("You can add this element only instead of wall");
             this.x = x;
             this.y = y;
             base.x = x;
@@ -71,30 +71,8 @@ namespace CourseWorkLib
         {
             base.width = width;
             base.length = length;
-
-
             base.removeElementFromSpace(space);
 
         }
-
-       /* public void moveRight(Space space, int position)
-        {
-            base.moveRight(space, position);
-        }
-
-        public void moveLeft(Space space, int position)
-        {
-            base.moveLeft(space, position);
-        }
-
-        public void moveUp(Space space, int position)
-        {
-            base.moveUp(space, position);
-        }
-
-        public void moveDown(Space space, int position)
-        {
-            base.moveDown(space, position);
-        }*/
     }
 }

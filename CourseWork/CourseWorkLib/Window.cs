@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -16,6 +17,7 @@ namespace CourseWorkLib
         {
             db = DB.GetDBInstance();
             connectionString = DB.GetConnectionString();
+            getWindowLstFromDB();
         }
 
         public void getWindowLstFromDB()
@@ -66,7 +68,7 @@ namespace CourseWorkLib
 
                 if (window == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return window;
             }
@@ -99,9 +101,10 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
             }
+            getWindowLstFromDB();
         }
 
     }

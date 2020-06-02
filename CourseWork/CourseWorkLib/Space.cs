@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using CourseWorkLib.FurnitureFactory;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
     public class Space
     {
-        private int id;
-        public string name { get; }
-        public int length { get; }
-        public int width { get; }
-        public int height { get;  }
+        public int id { get; private set; }
+        public string name;
+        public int length;
+        public int width;
+        public int height;
 
         public string[,] matrixSpace;
 
-        public List<WallUnit> walls { get; internal set; }
+        public List<WallUnit> walls;
         public List<DoorUnit> doors;
         public List<WindowUnit> windows;
         public List<Bed> beds;
         public List<Chair> chairs;
         public List<Wardrobe> wardrobes;
+
 
         private DB db;
         private string connectionString;
@@ -37,7 +39,7 @@ namespace CourseWorkLib
             }
             else
             {
-                throw new Exception("data isn't correct");
+                throw new DesignSpaceException("data isn't correct");
             }
 
             matrixSpace = new string[width, length];
@@ -62,13 +64,11 @@ namespace CourseWorkLib
 
         }
 
-        public void saveAllToDb()
+        public void saveElementToDB()
         {
-            saveSpace();
             foreach(var wall in walls)
             {
                 saveSpaceWall(wall);
-                
             }
             foreach(var door in doors)
             {
@@ -95,6 +95,10 @@ namespace CourseWorkLib
 
         public void saveSpace()
         {
+            if(id != 0)
+            {
+                return;
+            }
             string cmdStr = $"insert into {db.spacesTableName} ({db.spaceLengthAttrName}, {db.spaceWidthAttrName}," +
                 $"{db.spaceHeightAttrName}, {db.spaceNameAttrName}) values(@{db.spaceLengthAttrName}, @{db.spaceWidthAttrName}," +
                 $"@{db.spaceHeightAttrName}, @{db.spaceNameAttrName})";
@@ -112,7 +116,7 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
                 
             }
@@ -128,8 +132,7 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-                Console.WriteLine(cmd.CommandText);
-
+              
                 id = (int)cmd.ExecuteScalar();
             }
         }
@@ -142,19 +145,18 @@ namespace CourseWorkLib
                 $"@{db.wallLengthAttrName}, @{db.xAttrName}, @{db.yAttrName})";
             using (SqlConnection cn = new SqlConnection(connectionString))
             {
+               
                 cn.Open();
-                SqlCommand cmd = new SqlCommand(cmdStr, cn);
-                Console.WriteLine(wall.length);
+                SqlCommand cmd = new SqlCommand(cmdStr, cn);             
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.wallIdAttrName}", wall.id);
                 cmd.Parameters.AddWithValue($"@{db.wallLengthAttrName}", wall.length);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", wall.x);
-                cmd.Parameters.AddWithValue($"@{db.yAttrName}", wall.y);
-                Console.WriteLine(cmd.CommandText);
+                cmd.Parameters.AddWithValue($"@{db.yAttrName}", wall.y);   
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
             }
@@ -171,8 +173,6 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
-
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.doorIdAttrName}", door.id);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", door.x);
@@ -181,7 +181,7 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
 
@@ -198,8 +198,6 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
-
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.windowIdAttrName}", window.id);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", window.x);
@@ -209,7 +207,7 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
 
@@ -225,8 +223,6 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
-
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.chairIdAttrName}", chair.id);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", chair.x);
@@ -235,7 +231,7 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
             }
@@ -250,8 +246,6 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
-
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.bedIdAttrName}", bed.id);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", bed.x);
@@ -260,7 +254,7 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
             }
@@ -275,8 +269,6 @@ namespace CourseWorkLib
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand(cmdStr, cn);
-
-
                 cmd.Parameters.AddWithValue($"@{db.spaceIDAttrName}", id);
                 cmd.Parameters.AddWithValue($"@{db.chairIdAttrName}", wardrobe.id);
                 cmd.Parameters.AddWithValue($"@{db.xAttrName}", wardrobe.x);
@@ -285,12 +277,10 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
 
             }
-        }
-
-
+        }       
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 
+
 namespace CourseWorkLib
 {
     public class WallUnit : RectangleElement
@@ -40,8 +41,6 @@ namespace CourseWorkLib
             base.codeElement = code;
 
         }
-
-     
 
         public void addElement(Space space, int xStart, int yStart, int length)
         {

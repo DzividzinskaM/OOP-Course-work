@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -11,9 +12,6 @@ namespace CourseWorkLib
         public string name { get; }
         public string color { get; }
         public string material { get; }
-
-    //    public int width { get; }
-     //   public int length { get; }
 
         public int height { get;  }
         public bool pattern { get; }
@@ -55,7 +53,7 @@ namespace CourseWorkLib
         {
             
             if (installationHeight + height > space.height)
-                throw new Exception("Yon can not put this element on this height");
+                throw new DesignSpaceException("Yon can not put this element on this height");
             this.installationHeight = installationHeight;
             base.addElementToSpace(space, x, y);
             space.windows.Add(this);

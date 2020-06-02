@@ -1,5 +1,6 @@
 ﻿using System;
 using CourseWorkLib;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -25,7 +26,7 @@ namespace CourseWorkLib
         {
             if(x+width>space.width && y+length>space.length)
             {
-                throw new Exception("You go over space");
+                throw new DesignSpaceException("You go over space");
             }
             int tplX = x;
             int tplY = y;
@@ -34,7 +35,6 @@ namespace CourseWorkLib
                 tplX = x;
                 while (tplX < (x + width))
                 {
-                    Console.WriteLine(space.matrixSpace[tplX, tplY]);
                     if (space.matrixSpace[tplX, tplY] != CodeElementHelper.emptyElement)
                         return false;
                     tplX++;
@@ -67,7 +67,7 @@ namespace CourseWorkLib
             }
             else
             {
-                throw new Exception("There aren't available space for adding this element");
+                throw new DesignSpaceException("There aren't available space for adding this element");
             }
            
         }
@@ -89,11 +89,11 @@ namespace CourseWorkLib
             }
         }
 
-        protected void moveUp(Space space, int position)
+        public void moveUp(Space space, int position)
         {
             if(x-position < 0)
             {
-                throw new Exception("You go over space");
+                throw new DesignSpaceException("You go over space");
             }
             removeElementFromSpace(space);
             if(checkAvailableSpace(space, x-position, y))
@@ -105,14 +105,14 @@ namespace CourseWorkLib
             else
             {
                 addElementToSpace(space, x, y);
-                throw new Exception("space for element is not available");
+                throw new DesignSpaceException("space for element is not available");
             }
 
         }
-        protected void moveDown(Space space, int position)
+        public void moveDown(Space space, int position)
         {
             if(x+position > space.width)
-                throw new Exception("You go over space");
+                throw new DesignSpaceException("You go over space");
 
             removeElementFromSpace(space);
             if(checkAvailableSpace(space, x + position, y))
@@ -124,16 +124,16 @@ namespace CourseWorkLib
             else
             {
                 addElementToSpace(space, x, y);
-                throw new Exception("space for element is not available");
+                throw new DesignSpaceException("space for element is not available");
             }
 
         }
 
-        protected void moveRight(Space space, int position)
+        public void moveRight(Space space, int position)
         {
             if (y + position > space.length)
             {
-                throw new Exception("You go over space");
+                throw new DesignSpaceException("You go over space");
             }
             removeElementFromSpace(space);
             if (checkAvailableSpace(space, x, y+position))
@@ -145,16 +145,16 @@ namespace CourseWorkLib
             else
             {
                 addElementToSpace(space, x, y);
-                throw new Exception("space for element is not available");
+                throw new DesignSpaceException("space for element is not available");
             }
 
         }
 
-        protected void moveLeft(Space space, int position)
+        public void moveLeft(Space space, int position)
         {
             if (y - position < 0)
             {
-                throw new Exception("You go over space");
+                throw new DesignSpaceException("You go over space");
             }
             removeElementFromSpace(space);
             if (checkAvailableSpace(space, x, y - position))
@@ -166,12 +166,12 @@ namespace CourseWorkLib
             else
             {
                 addElementToSpace(space, x, y);
-                throw new Exception("space for element is not available");
+                throw new DesignSpaceException("space for element is not available");
             }
 
         }
 
-        protected void turnElement(Space space)
+        public void turnElement(Space space)
         {
             int tplWidth = width;
             int tplLength = length;
@@ -183,8 +183,8 @@ namespace CourseWorkLib
 
             if(checkAvailableSpace(space, x, y))
             {
-                x++;
-                y++;
+                ++x;
+                ++y;
                 addElementToSpace(space, x, y);
             }
             else
@@ -194,7 +194,7 @@ namespace CourseWorkLib
 
                 addElementToSpace(space, x, y);
 
-                throw new Exception("there aren't enough space for turning element");
+                throw new DesignSpaceException("there aren't enough space for turning element");
             }
         }
     }

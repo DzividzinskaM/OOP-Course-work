@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib.FurnitureFactory
 {
     public class WardrobeCreator : FurnitureCreator
     {
         public readonly List<Wardrobe> wardrobes = new List<Wardrobe>();
+
+        public WardrobeCreator()
+        {
+            getLstFromDB(); 
+        }
         public override void getLstFromDB()
         {
             string cmdStr = $"select * from {db.WardrobesTableName}";
@@ -51,7 +57,7 @@ namespace CourseWorkLib.FurnitureFactory
 
                 if (wardrobe == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return wardrobe;
             }
@@ -80,9 +86,10 @@ namespace CourseWorkLib.FurnitureFactory
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
             }
+            getLstFromDB();
         }
 
 

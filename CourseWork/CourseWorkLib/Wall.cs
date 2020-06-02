@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib
 {
@@ -18,6 +19,7 @@ namespace CourseWorkLib
         {
             db = DB.GetDBInstance();
             connectionString = DB.GetConnectionString();
+            getLstFromDB();
         }
 
 
@@ -37,9 +39,10 @@ namespace CourseWorkLib
                 int result = cmd.ExecuteNonQuery();
                 if(result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
             }
+            getLstFromDB();
         }
 
         public void getLstFromDB()
@@ -80,7 +83,7 @@ namespace CourseWorkLib
                 }
                 if(unit == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return unit;
 
@@ -98,31 +101,21 @@ namespace CourseWorkLib
             right.turnElement(space);
             right.moveRight(space, space.length - right.density);
 
-
             WallUnit left = getElemByID(id);
-
             left.width = left.density;
-
             left.length = space.length - left.density;
             left.addElement(space, xStartOut, yStartOut, left.length);
             left.turnElement(space);
 
-            
-
-
             WallUnit top = getElemByID(id);
             int NewLength = space.length - (2 * top.density);
-            top.width = top.density;
-         
+            top.width = top.density;         
             top.length = NewLength;
             top.addElement(space, xStartOut, yStartOut + top.density, top.length);
-
-
 
             WallUnit bottom = getElemByID(id);
             bottom.length = space.length - bottom.density;
             bottom.addElement(space, space.length - top.density + xStartOut, yStartOut, bottom.length);
-
 
         }
 
@@ -145,7 +138,6 @@ namespace CourseWorkLib
             right.turnElement(space);
 
         }
-
 
     }
 }

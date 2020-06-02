@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using CourseWorkLib.Exception;
 
 namespace CourseWorkLib.FurnitureFactory
 {
@@ -10,8 +11,10 @@ namespace CourseWorkLib.FurnitureFactory
     {
         public readonly List<Chair> chairs = new List<Chair>();
        
-        
-
+        public ChairCreator()
+        {
+            getLstFromDB();
+        }
         public override void getLstFromDB()
         {
             string cmdStr = $"select * from {db.chairTableName}";
@@ -28,7 +31,6 @@ namespace CourseWorkLib.FurnitureFactory
                         (string)rd[db.materialAttrName], (int)rd[db.chairWidthAttrName], (int)rd[db.chairLengthAttrName], (int)rd[db.chairHeightAttrName]);
                     if (!chairs.Contains(chair))
                         chairs.Add(chair);
-
                 }
             }
         }
@@ -51,7 +53,7 @@ namespace CourseWorkLib.FurnitureFactory
                 }
                 if (chair == null)
                 {
-                    throw new Exception("Element with this id isn't find in database");
+                    throw new DesignSpaceException("Element with this id isn't find in database");
                 }
                 return chair;
             }
@@ -78,14 +80,11 @@ namespace CourseWorkLib.FurnitureFactory
                 int result = cmd.ExecuteNonQuery();
                 if (result != 1)
                 {
-                    throw new Exception("there are some problems with adding wall to database");
+                    throw new DesignSpaceException("there are some problems with adding wall to database");
                 }
             }
 
             getLstFromDB();
         }
-
-
-
     }
 }
